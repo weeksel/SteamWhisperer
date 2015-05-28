@@ -18,6 +18,8 @@
         android:layout_gravity="center"
         android:text="GET"
         android:id="@+id/my_button"/>
+
+
     <EditText
         android:layout_margin="20dip"
         android:layout_width="fill_parent"
