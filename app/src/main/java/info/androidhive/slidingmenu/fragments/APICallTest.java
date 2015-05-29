@@ -35,13 +35,14 @@ public class APICallTest extends Fragment implements View.OnClickListener {
 
         mRootView = inflater.inflate(R.layout.fragment_api_call_test, container, false);
 
-        mRootView.findViewById(R.id.my_button).setOnClickListener(this);
+        mRootView.findViewById(R.id.my_button1).setOnClickListener(this);
+        mRootView.findViewById(R.id.my_button2).setOnClickListener(this);
 
         return mRootView;
 
     }
 
-    private class LongRunningGetIO extends AsyncTask<Void, Void, String> {
+    private class LongRunningGetIO extends AsyncTask<View, Void, String> {
         protected String getASCIIContentFromEntity(HttpEntity entity) throws IllegalStateException, IOException {
             InputStream in = entity.getContent();
 
@@ -59,10 +60,20 @@ public class APICallTest extends Fragment implements View.OnClickListener {
 
 
         @Override
-        protected String doInBackground(Void... params) {
+        protected String doInBackground(View... params) {
+            String requestString = "";
+            View clickedView = params[0];
+
+            if (clickedView.getId() == R.id.my_button1){
+                requestString = "http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=440&count=3&maxlength=300&format=json";
+            }
+            else {
+                requestString = "http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key=2E0A2C9F0350C1BC0E59A151827A78DF&steamid=76561197993865907&relationship=all";
+            }
+
             HttpClient httpClient = new DefaultHttpClient();
             HttpContext localContext = new BasicHttpContext();
-            HttpGet httpGet = new HttpGet("http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=440&count=3&maxlength=300&format=json");
+            HttpGet httpGet = new HttpGet(requestString);
             String text = null;
             try {
                 HttpResponse response = httpClient.execute(httpGet, localContext);
@@ -84,7 +95,8 @@ public class APICallTest extends Fragment implements View.OnClickListener {
                 et.setText(results);
             }
 
-            Button b = (Button) mRootView.findViewById(R.id.my_button);
+            Button b = (Button) mRootView.findViewById(R.id.my_button1);
+            Button c = (Button) mRootView.findViewById(R.id.my_button2);
 
             b.setClickable(true);
         }
@@ -93,11 +105,13 @@ public class APICallTest extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View arg0) {
-        Button b = (Button) mRootView.findViewById(R.id.my_button);
+        Button b = (Button) mRootView.findViewById(R.id.my_button1);
+        Button c = (Button) mRootView.findViewById(R.id.my_button2);
 
 
         b.setClickable(false);
-        new LongRunningGetIO().execute();
+        c.setClickable(false);
+        new LongRunningGetIO().execute(arg0);
     }
 
 

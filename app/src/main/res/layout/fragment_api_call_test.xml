@@ -22,9 +22,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="GET"
+        android:text="GET TF NEWS"
         android:layout_below="@id/GetDemo"
-        android:id="@+id/my_button"/>
+        android:id="@+id/my_button1"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="GET FRIENDS LIST"
+        android:layout_below="@id/my_button1"
+        android:id="@+id/my_button2"/>
 
 
     <EditText
@@ -35,7 +43,7 @@
         android:maxLines="15"
         android:textSize="12sp"
         android:editable="false"
-        android:layout_below="@id/my_button"
+        android:layout_below="@id/my_button2"
         android:id="@+id/my_edit"/>
 
 

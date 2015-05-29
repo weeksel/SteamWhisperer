@@ -19,6 +19,7 @@ import android.widget.ListView;
 
 import info.androidhive.slidingmenu.adapter.NavDrawerListAdapter;
 import info.androidhive.slidingmenu.fragments.APICallTest;
+import info.androidhive.slidingmenu.fragments.Friendslist;
 import info.androidhive.slidingmenu.fragments.HomeFragment;
 import info.androidhive.slidingmenu.model.NavDrawerItem;
 
@@ -68,7 +69,7 @@ public class MainActivity extends ActionBarActivity {
         // Find People
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
         // Photos
-     //   navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
         // Communities, Will add a counter here
       //  navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1), true, "22"));
         // Pages
@@ -175,6 +176,8 @@ public class MainActivity extends ActionBarActivity {
                 Log.e("MainActivity", "Creating API Call Test Fragment");
                 fragment = new APICallTest();
                 break;
+            case 2:
+                fragment = new Friendslist();
 
             default:
                 break;
